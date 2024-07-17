@@ -1,44 +1,10 @@
-﻿using System.Drawing;
-
-class Subcommand{
-    private string subcommandName;
-    private string description;
-    
-    public Subcommand(string subcommandName,string description)
-    {
-        this.subcommandName=subcommandName;
-        this.description=description;
-    }
-
-    public string SubcommandName{get=>subcommandName;}
-    public string Description{get=>description;}
-}
-
-class Program{
-    private static Subcommand[] subcommands={
-        new Subcommand("show","Shows client configuration."),
-        new Subcommand("showchats","Shows client's chats."),
-        new Subcommand("showtasks","Shows all tasks applied to client."),
-        new Subcommand("genconf","Create config."),
-        new Subcommand("setconf","Applies a configuration file."),
-        new Subcommand("set","Change the current configuration.")
-    };
-    public static void ShowHelp()
-    {
-        Console.Write("Usage: <cmd> [<args>]\n\n");
-        Console.Write("Available subcommands:\n");
-        foreach(var subcommand in subcommands)
-        {
-            Console.WriteLine($"{subcommand.SubcommandName}: {subcommand.Description}");
-        }
-        Console.WriteLine("\nYou may pass --help to any of this subcommands to view usage.");
-    }
+﻿class Program{
     public static int Main(string[] args)
     {
         Console.ForegroundColor=ConsoleColor.Gray;
         if(args.Length==0)
         {
-            ShowHelp();
+            Terminal.ShowSubcommands();
             return 1;
         }
         if(args.Length==1&&(args[0]=="-v"||args[0]=="version"||args[0]=="--version"))
@@ -48,22 +14,18 @@ class Program{
         }
         if(args.Length==1&&(args[0]=="-h"||args[0]=="help"||args[0]=="--help"))
         {
-            ShowHelp();
+            Terminal.ShowSubcommands();
             return 0;
         }
-        foreach(var subcommand in subcommands)
+        foreach(var subcommand in Terminal.subcommands)
         {
             if(subcommand.SubcommandName==args[0])
             {
-                Console.WriteLine(subcommand.Description);
-                return 0;
+                return subcommand.CommandFunction(args.Skip(1).ToArray());
             }
         }
-        Console.ForegroundColor=ConsoleColor.Red;
-        Console.WriteLine("Invalid subcommand "+args[0]+"\n");
-        Console.ForegroundColor = ConsoleColor.Gray;
-        ShowHelp();
-
+        Terminal.ShowError("Invalid subcommand "+args[0]+"\n");
+        Terminal.ShowSubcommands();
         return 1;
     }
 }
