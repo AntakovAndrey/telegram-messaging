@@ -1,6 +1,6 @@
 class Terminal{
     public static Subcommand[] subcommands={
-        new Subcommand("show", Terminal.Show,"Shows client configuration."),
+        new Subcommand("show", Show,"Shows client configuration."),
         new Subcommand("showchats",Show,"Shows client's chats."),
         new Subcommand("showtasks",Show,"Shows all tasks applied to client."),
         new Subcommand("genconf",Show,"Create config."),

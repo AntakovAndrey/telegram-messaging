@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "cli", "cli\cli.csproj", "{DD9BE52E-2F4E-402E-A50A-AD55D8F72940}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TM", "TM\TM.csproj", "{DD9BE52E-2F4E-402E-A50A-AD55D8F72940}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "messaging-service", "messaging-service\messaging-service.csproj", "{09258378-5278-4163-9236-47E86908DD60}"
 EndProject
