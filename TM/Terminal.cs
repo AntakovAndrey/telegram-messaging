@@ -33,22 +33,31 @@ class Terminal{
         }
         if(args.Length==1&&(args[0]=="-h"||args[0]=="help"||args[0]=="--help"))
         {
-
-        }
-        if(args.Length>=1)
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            
-            Console.WriteLine(args[0]);
+            StartSubcommandShowHelp();
             return 0;
         }
+        if(args.Length==1)
+        {
+            if(!File.Exists(args[0]))
+            {
+                ShowError("File not exists or you typed the wrong parameter.\n\n");
+                ShowSubcommands();
+                return 1;
+            }
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+            Console.WriteLine(currentDirectory);
+            
+            return 0;
+        }
+        ShowSubcommands();
         return 1;
     }
 
     public static void ShowError(string errorMessage)
     {
         Console.ForegroundColor=ConsoleColor.Red;
-        Console.WriteLine(errorMessage);
+        Console.Write(errorMessage);
         Console.ForegroundColor=ConsoleColor.Gray;
     }
 
