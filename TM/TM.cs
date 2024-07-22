@@ -1,4 +1,4 @@
-﻿class Program{
+﻿class TM{
     public static int Main(string[] args)
     {
         Console.ForegroundColor=ConsoleColor.Gray;

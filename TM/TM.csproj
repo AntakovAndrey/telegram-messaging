@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="WTelegramClient" Version="4.1.5" />
+  </ItemGroup>
+
 </Project>
