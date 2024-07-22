@@ -1,19 +1,20 @@
 class Terminal{
     public static Subcommand[] subcommands={
-        new Subcommand("show", Show,"Shows client configuration."),
-        new Subcommand("showchats",Show,"Shows client's chats."),
-        new Subcommand("showtasks",Show,"Shows all tasks applied to client."),
-        new Subcommand("genconf",Show,"Create config."),
-        new Subcommand("setconf",Show,"Applies a configuration file."),
-        new Subcommand("set",Show,"Change the current configuration."),
-        new Subcommand("start",Show,"Starts the selected client with it's tasks.")
+        new Subcommand("show", onShow,"Shows client configuration."),
+        new Subcommand("showchats",onShow,"Shows client's chats."),
+        new Subcommand("showtasks",onShow,"Shows all tasks applied to client."),
+        new Subcommand("genconf",onShow,"Create config."),
+        new Subcommand("setconf",onShow,"Applies a configuration file."),
+        new Subcommand("set",onShow,"Change the current configuration."),
+        new Subcommand("start",onStart,"Starts the selected client with it's tasks.")
     };
 
-    public static int Show(string[] args)
+    public static int onShow(string[] args)
     {
         if(args.Length==0)
         {
-            Console.Write("No arguments!\n");   
+            Console.Write("No arguments!\n");  
+            return -1; 
         }
         if(args.Length==1&&(args[0]=="-h"||args[0]=="help"||args[0]=="--help"))
         {
@@ -22,6 +23,26 @@ class Terminal{
         }
         Console.WriteLine("Showing you some shit!");
         return 0;
+    }
+
+    public static int onStart(string[] args){
+        if(args.Length==0)
+        {
+            Console.Write("No arguments!\n");
+            return -1;
+        }
+        if(args.Length==1&&(args[0]=="-h"||args[0]=="help"||args[0]=="--help"))
+        {
+
+        }
+        if(args.Length>=1)
+        {
+            string currentDirectory = Directory.GetCurrentDirectory();
+            
+            Console.WriteLine(args[0]);
+            return 0;
+        }
+        return 1;
     }
 
     public static void ShowError(string errorMessage)
@@ -44,7 +65,12 @@ class Terminal{
 
     public static void ShowSubcommandShowHelp()
     {
-        Console.Write("Usage: show [filename]\n");
-        Console.Write("Show command allows you to see the client's config stored in a configuration file");
+        Console.Write("Usage: show [PATH|FILENAME]\n");
+        Console.Write("Show command allows you to see the client's config stored in a configuration file.");
+    }
+
+    public static void StartSubcommandShowHelp()
+    {
+        Console.Write("Usage: start [PATH|FILENAME]");
     }
 }
