@@ -55,6 +55,22 @@ class Terminal{
         return 1;
     }
 
+    public static int onGenConfig(string[] args)
+    {
+        if(args.Length==0)
+        {
+            ShowError("No arguments!\n\n");
+            GenConfigSubcommandShowHelp();
+            return -1;
+        }
+        if(args.Length==1&&(args[0]=="-h"||args[0]=="help"||args[0]=="--help"))
+        {
+            GenConfigSubcommandShowHelp();
+        }
+
+        return 0;
+    }
+
     public static void ShowError(string errorMessage)
     {
         Console.ForegroundColor=ConsoleColor.Red;
