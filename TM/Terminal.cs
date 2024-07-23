@@ -99,4 +99,10 @@ class Terminal{
     {
         Console.Write("Usage: start [PATH|FILENAME]");
     }
+
+    public static void GenConfigSubcommandShowHelp(){
+        Console.Write("Usage: genconfig [PATH|FILENAME]\n");
+        Console.Write("[PATH|FILENAME] is a target filename where config will be saved.\n\n");
+        Console.Write("genconfig subcommand interactively helps to create a client configuration file.\n");
+    }
 }
