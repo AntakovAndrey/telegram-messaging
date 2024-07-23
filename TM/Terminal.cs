@@ -44,6 +44,7 @@ class Terminal{
                 ShowSubcommands();
                 return 1;
             }
+            
 
             string currentDirectory = Directory.GetCurrentDirectory();
             Console.WriteLine(currentDirectory);
